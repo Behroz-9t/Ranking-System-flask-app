@@ -34,6 +34,7 @@ A modern, user-friendly web application for ranking students based on their exam
 ---
 
 ## Project Structure
+
 my-flask-app
 │
 ├── App_Controller.py

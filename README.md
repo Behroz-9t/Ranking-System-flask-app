@@ -5,12 +5,6 @@ A modern, user-friendly web application for ranking students based on their exam
 
 ---
 
-## Short Description for Git
-
-> **A Flask-based web app for ranking students by exam scores. Search by seat number (last 3 digits), view top positions, and display all results. Built with Python OOP and tabulate.**
-
----
-
 ## Features
 
 - **Web-based Interface:** Access results from any browser.

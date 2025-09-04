@@ -18,7 +18,7 @@ def home():
     controller = build_controller()
     seat = request.args.get("seat", "").strip()
 
-    if seat.lower() == "k":
+    if seat.lower() == "key":
         show_all = True
         seat_query = None
     else:

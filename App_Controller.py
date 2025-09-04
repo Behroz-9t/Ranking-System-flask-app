@@ -15,7 +15,7 @@ class AppController:
     
     def run(self):
         Student=input("Enter anything to start:")
-        if Student=="k":
+        if Student=="key":
             teacher = Teacher("Dr. Humera Tariq", "CS-352")
             students = StudentList()
             
@@ -36,9 +36,14 @@ class AppController:
 
             app = AppController(teacher, students)
             app.position()
+            
             while (True):
+
+
+                num = input("\nEnter the last three digits.. ")
+                default = "B24110006"
+                seat = default+num
                 
-                seat = input("\nEnter Seat No to search: ")
                 if(seat=="exit" or seat=="Exit" or seat=="EXIT"):
                     break
                 app.search_student(seat)
@@ -49,7 +54,7 @@ class AppController:
         print("=" * 92)
         print(f"Teacher: {self.teacher.name}")
         print(f"Course Code: {self.teacher.course_code}\n")
-        print("Developed By: Behroz, Fatima Shahzad, Asad, Rizwan, Syeda Kaneez Fatima, Zain.")
+        print("Developed By: Behroz")
         print("=" * 92)
 
         self.assign_ranks()
@@ -89,7 +94,7 @@ class AppController:
         print("=" * 92)
         print(f"Teacher: {self.teacher.name}")
         print(f"Course Code: {self.teacher.course_code}\n")
-        print("Developed By: Behroz, Fatima Shahzad, Asad, Rizwan, Syeda Kaneez Fatima, Zain.")
+        print("Developed By: Behroz")
         print("=" * 92)
 
         self.assign_ranks()
@@ -130,17 +135,69 @@ class AppController:
             <meta charset="utf-8"/>
             <title>{title}</title>
             <style>
-                body {{ font-family: Arial, sans-serif; margin: 24px; }}
-                .container {{ max-width: 1000px; margin: 0 auto; }}
+                body {{
+                    font-family: Arial, sans-serif; 
+                    margin: 24px;
+                    background: #f9f9f9;
+                }}
+                .container {{
+                    max-width: 1000px; 
+                    margin: 0 auto; 
+                    background: #fff;
+                    padding: 20px;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                }}
                 h1, h2, h3 {{ text-align: center; }}
                 .meta {{ text-align:center; margin-bottom: 16px; }}
-                table {{ border-collapse: collapse; margin: 12px auto; width: 100%; }}
-                th, td {{ border: 1px solid #333; padding: 8px; text-align: center; }}
-                th {{ background-color: #f2f2f2; }}
+                
+                /* ✅ Rounded table styling */
+                table {{
+                    border-collapse: separate; 
+                    border-spacing: 0;
+                    margin: 12px auto; 
+                    width: 100%;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+                }}
+                th, td {{
+                    border: 1px solid #ddd; 
+                    padding: 10px; 
+                    text-align: center;
+                }}
+                th {{
+                    background: #4CAF50; 
+                    color: white;
+                    font-weight: bold;
+                }}
+                tr:nth-child(even) {{
+                    background: #f2f2f2;
+                }}
+                tr:hover {{
+                    background: #e9f5e9;
+                }}
+
                 .form {{ text-align:center; margin: 20px 0; }}
-                input[type="text"] {{ padding: 8px; width: 260px; }}
-                button {{ padding: 8px 14px; cursor: pointer; }}
-                .notfound {{ text-align:center; margin-top: 10px; }}
+                input[type="text"] {{
+                    padding: 8px; 
+                    width: 260px; 
+                    border: 1px solid #ccc; 
+                    border-radius: 6px;
+                }}
+                button {{
+                    padding: 8px 14px; 
+                    cursor: pointer;
+                    border: none;
+                    border-radius: 6px;
+                    background: #4CAF50;
+                    color: white;
+                    font-weight: bold;
+                }}
+                button:hover {{
+                    background: #45a049;
+                }}
+                .notfound {{ text-align:center; margin-top: 10px; color: red; }}
                 .muted {{ color: #666; font-size: 0.9rem; }}
             </style>
         </head>
@@ -149,7 +206,7 @@ class AppController:
                 <h1>OOPs Mid Term Results (Python)</h1>
                 <div class="meta">
                     <div>Teacher: <b>{self.teacher.name}</b> &nbsp;|&nbsp; Course Code: <b>{self.teacher.course_code}</b></div>
-                    <div class="muted">Developed By: Behroz, Fatima Shahzad, Asad, Rizwan, Syeda Kaneez Fatima, Zain.</div>
+                    <div class="muted">Developed By: Behroz</div>
                 </div>
                 {body_html}
             </div>
@@ -181,13 +238,17 @@ class AppController:
         return f"""
         <div class="form">
             <form action="/" method="get">
-                <input type="text" name="seat" placeholder="Enter Seat No..." value="{prefill}"/>
+                <input type="text" name="seat" placeholder="Enter the last three digits.. " value="{prefill}"/>
                 <button type="submit">Search</button>
             </form>
         </div>
         """
 
-    def search_student_html(self, seat_no):
+    def search_student_html(self, last3):
+        default = "B24110006"
+        seat_no = default + last3.strip()
+
+
         student = self.student_list.search_by_seat(seat_no)
         if not student:
             return f'<div class="notfound">No student found for Seat No <b>{seat_no}</b>.</div>'
@@ -211,11 +272,12 @@ class AppController:
         # simulate "if Student == 'k'" → show_all
         # otherwise → show top positions
         mode = request.args.get("mode", "positions")  # default to positions
-        seat = request.args.get("seat")
+        last3 = request.args.get("last3")
+       
 
         show_all = (mode == "all")
 
-        return self.page_with_search(seat_query=seat, show_all=show_all)
+        return self.page_with_search(seat_query=last3, show_all=show_all)
 
     # -----------------------------
     # Existing page builder

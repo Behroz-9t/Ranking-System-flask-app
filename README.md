@@ -1,4 +1,4 @@
-# my-flask-app
+# Ranking-System-flask-app
 # OOPs Mid Term Results – Student Ranking System (Web)
 
 A modern, user-friendly web application for ranking students based on their exam scores. Built with Python, Flask, and OOP principles, this project allows teachers and students to easily search for results, view top performers, and display all rankings in a clean, tabular format.
@@ -36,17 +36,17 @@ A modern, user-friendly web application for ranking students based on their exam
 ## Project Structure
 my-flask-app
 │
-│──  App_Controller.py
-│──  File.py
-│──  index.py
-│──  main.py
-│──  Procfile
-│──  requirements.txt
-│──  StudentList.py
-│──  Student.py
-│──  Teacher.py
-│──  results.csv
-│──  README.md
+├── App_Controller.py
+├── File.py
+├── index.py
+├── main.py
+├── Procfile
+├── requirements.txt
+├── StudentList.py
+├── Student.py
+├── Teacher.py
+├── results.csv
+└── README.md
 
 ---
 

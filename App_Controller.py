@@ -199,6 +199,34 @@ class AppController:
                 }}
                 .notfound {{ text-align:center; margin-top: 10px; color: red; }}
                 .muted {{ color: #666; font-size: 0.9rem; }}
+                 /* ✅ Media Queries */
+                @media (max-width: 768px) {{
+                    .container {{
+                        padding: 12px;
+                        border-radius: 0;
+                        box-shadow: none;
+                    }}
+                    table {{
+                        font-size: 0.85rem;
+                        min-width: 100%; /* allow shrinking */
+                    }}
+                    input[type="text"] {{
+                        width: 180px;
+                    }}
+                }}
+                @media (max-width: 480px) {{
+                    h1 {{ font-size: 1.5rem; }}
+                    h2 {{ font-size: 1.2rem; }}
+                    th, td {{ padding: 6px; font-size: 0.8rem; }}
+                    input[type="text"] {{
+                        width: 140px;
+                        font-size: 0.9rem;
+                    }}
+                    button {{
+                        padding: 8px 12px;
+                        font-size: 0.9rem;
+                    }}
+                }}
             </style>
         </head>
         <body>

@@ -133,73 +133,100 @@ class AppController:
         <html>
         <head>
             <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- ✅ responsive scaling -->
             <title>{title}</title>
             <style>
                 body {{
                     font-family: Arial, sans-serif; 
-                    margin: 24px;
-                    background: #f9f9f9;
+                    margin: 0;
+                    padding: 0;
+                    background: #f2f3f4;  /* ✅ plain white background */
                 }}
                 .container {{
                     max-width: 1000px; 
                     margin: 0 auto; 
-                    background: #fff;
+                    background: #f2f3f4;
                     padding: 20px;
-                    border-radius: 12px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    border-radius: 16px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
                 }}
-                h1, h2, h3 {{ text-align: center; }}
+
+                /* ✅ Headings */
+                h1 {{ 
+                    text-align: center; 
+                    color: #2e7d32;   /* green main heading */
+                    font-size: 2rem;
+                    margin-bottom: 20px;
+                }}
+                h2 {{ 
+                    text-align: center; 
+                    color: #000000;   /* black search results heading */
+                    font-size: 1.4rem;
+                    margin: 20px 0 10px 0;
+                }}
+                h3 {{ 
+                    text-align: center; 
+                    color: #2e7d32;
+                }}
+
                 .meta {{ text-align:center; margin-bottom: 16px; }}
-                
-                /* ✅ Rounded table styling */
+
+                /* ✅ Responsive table wrapper */
+                .table-wrapper {{
+                    overflow-x: auto;  /* horizontal scroll for small screens */
+                }}
                 table {{
                     border-collapse: separate; 
                     border-spacing: 0;
-                    margin: 12px auto; 
+                    margin: 16px auto; 
                     width: 100%;
                     border-radius: 12px;
                     overflow: hidden;
-                    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                    min-width: 600px;
                 }}
                 th, td {{
                     border: 1px solid #ddd; 
                     padding: 10px; 
                     text-align: center;
+                    font-size: 0.95rem;
                 }}
                 th {{
-                    background: #4CAF50; 
+                    background: #66bb6a; 
                     color: white;
                     font-weight: bold;
                 }}
-                tr:nth-child(even) {{
-                    background: #f2f2f2;
-                }}
-                tr:hover {{
-                    background: #e9f5e9;
-                }}
+                tr:nth-child(even) {{ background: #f9f9f9; }}
+                tr:hover {{ background: #eafbea; }}
 
                 .form {{ text-align:center; margin: 20px 0; }}
                 input[type="text"] {{
-                    padding: 8px; 
+                    padding: 10px; 
                     width: 260px; 
-                    border: 1px solid #ccc; 
-                    border-radius: 6px;
+                    border: 1px solid #bbb; 
+                    border-radius: 8px;
+                    outline: none;
+                    transition: 0.3s;
+                }}
+                input[type="text"]:focus {{
+                    border-color: #66bb6a;
+                    box-shadow: 0 0 5px rgba(102,187,106,0.5);
                 }}
                 button {{
-                    padding: 8px 14px; 
+                    padding: 10px 16px; 
                     cursor: pointer;
                     border: none;
-                    border-radius: 6px;
-                    background: #4CAF50;
+                    border-radius: 8px;
+                    background: #66bb6a;
                     color: white;
                     font-weight: bold;
+                    transition: 0.3s;
                 }}
-                button:hover {{
-                    background: #45a049;
-                }}
+                button:hover {{ background: #57a05a; }}
                 .notfound {{ text-align:center; margin-top: 10px; color: red; }}
                 .muted {{ color: #666; font-size: 0.9rem; }}
-                 /* ✅ Media Queries */
+
+                /* ✅ Responsive adjustments */
                 @media (max-width: 768px) {{
                     .container {{
                         padding: 12px;
@@ -208,7 +235,7 @@ class AppController:
                     }}
                     table {{
                         font-size: 0.85rem;
-                        min-width: 100%; /* allow shrinking */
+                        min-width: 100%;
                     }}
                     input[type="text"] {{
                         width: 180px;
@@ -216,7 +243,7 @@ class AppController:
                 }}
                 @media (max-width: 480px) {{
                     h1 {{ font-size: 1.5rem; }}
-                    h2 {{ font-size: 1.2rem; }}
+                    h2 {{ font-size: 1.1rem; }}
                     th, td {{ padding: 6px; font-size: 0.8rem; }}
                     input[type="text"] {{
                         width: 140px;
@@ -236,7 +263,9 @@ class AppController:
                     <div>Teacher: <b>{self.teacher.name}</b> &nbsp;|&nbsp; Course Code: <b>{self.teacher.course_code}</b></div>
                     <div class="muted">Developed By: Behroz</div>
                 </div>
-                {body_html}
+                <div class="table-wrapper">
+                    {body_html}
+                </div>
             </div>
         </body>
         </html>

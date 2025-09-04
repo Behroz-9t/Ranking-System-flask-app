@@ -52,7 +52,7 @@ my-flask-app
 
 - **App_Controller.py:** Main logic for ranking, searching, and rendering HTML.
 - **Teacher.py / StudentList.py:** OOP models for teacher and students.
-- **FileHandler.py:** Loads student data from CSV.
+- **File.py:** Loads student data from CSV.
 - **index.py:** Flask app entry point.
 
 ---

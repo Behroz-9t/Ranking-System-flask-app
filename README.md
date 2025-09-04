@@ -48,6 +48,7 @@ my-flask-app
 ├── results.csv
 └── README.md
 
+---
 
 - **App_Controller.py:** Main logic for ranking, searching, and rendering HTML.
 - **Teacher.py / StudentList.py:** OOP models for teacher and students.
